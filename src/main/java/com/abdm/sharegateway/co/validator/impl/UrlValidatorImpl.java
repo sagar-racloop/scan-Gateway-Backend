@@ -16,20 +16,24 @@ public class UrlValidatorImpl implements ConstraintValidator<UrlValidator, Healt
     public boolean isValid(HealthInformationProviderCO healthInformationProviderCO,
                            ConstraintValidatorContext constraintValidatorContext) {
         try {
-            isValidUrl(healthInformationProviderCO.getServerUrl());
+            isValidUrl(healthInformationProviderCO.getSearchUrl());
         } catch (MalformedURLException | URISyntaxException e) {
-            throw new NoStackException("Invalid Server Url");
+            throw new NoStackException("Invalid search url");
         }
         try {
             isValidUrl(healthInformationProviderCO.getTokenUrl());
         } catch (MalformedURLException | URISyntaxException e) {
-            throw new NoStackException("Invalid Token Url");
+            throw new NoStackException("Invalid token url");
+        }
+        try {
+            isValidUrl(healthInformationProviderCO.getCreatePatientUrl());
+        } catch (MalformedURLException | URISyntaxException e) {
+            throw new NoStackException("Invalid create patient url");
         }
         return true;
     }
 
     private void isValidUrl(String url) throws URISyntaxException, MalformedURLException {
-
         new URL(url).toURI();
     }
 

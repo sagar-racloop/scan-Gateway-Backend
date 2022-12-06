@@ -12,15 +12,17 @@ public class ImageValidator implements ConstraintValidator<ValidImage, Multipart
 
         boolean result = true;
 
-        String contentType = multipartFile.getContentType();
-        assert contentType != null;
-        if (!isSupportedContentType(contentType)) {
-            context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(
-                            "Only PNG or JPG images are allowed.")
-                    .addConstraintViolation();
+        if (multipartFile != null) {
+            String contentType = multipartFile.getContentType();
+            assert contentType != null;
+            if (!isSupportedContentType(contentType)) {
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate(
+                                "Only PNG or JPG images are allowed.")
+                        .addConstraintViolation();
 
-            result = false;
+                result = false;
+            }
         }
         return result;
     }

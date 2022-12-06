@@ -1,19 +1,19 @@
 package com.abdm.sharegateway.util;
 
-import com.abdm.sharegateway.co.HipLogoCo;
+import com.abdm.sharegateway.co.HealthInformationProviderCO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ApplicationUtil {
 
-    public static HipLogoCo getJson(String jsonString) {
-        HipLogoCo hipLogoCo;
+    public static HealthInformationProviderCO getHipJsonObject(String jsonString) {
+        HealthInformationProviderCO healthInformationProviderCO;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            hipLogoCo = objectMapper.readValue(jsonString, HipLogoCo.class);
+            healthInformationProviderCO = objectMapper.readValue(jsonString, HealthInformationProviderCO.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        return hipLogoCo;
+        return healthInformationProviderCO;
     }
 }
