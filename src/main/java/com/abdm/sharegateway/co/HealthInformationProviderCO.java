@@ -1,8 +1,6 @@
 package com.abdm.sharegateway.co;
 
-import com.abdm.sharegateway.co.validator.HipValidator;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import com.abdm.sharegateway.co.validator.UrlValidator;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@HipValidator
+@UrlValidator
 public class HealthInformationProviderCO {
 
     @NotNull
