@@ -1,7 +1,7 @@
 package com.abdm.sharegateway.co.validator.impl;
 
 import com.abdm.sharegateway.co.HealthInformationProviderCO;
-import com.abdm.sharegateway.co.validator.HipValidator;
+import com.abdm.sharegateway.co.validator.UrlValidator;
 import com.abdm.sharegateway.exception.NoStackException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public class HipValidatorImpl implements ConstraintValidator<HipValidator, HealthInformationProviderCO> {
+public class UrlValidatorImpl implements ConstraintValidator<UrlValidator, HealthInformationProviderCO> {
 
     @Override
     public boolean isValid(HealthInformationProviderCO healthInformationProviderCO,

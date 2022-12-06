@@ -1,6 +1,6 @@
 package com.abdm.sharegateway.co.validator;
 
-import com.abdm.sharegateway.co.validator.impl.HipValidatorImpl;
+import com.abdm.sharegateway.co.validator.impl.ImageValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -8,15 +8,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({TYPE})
+@Target(FIELD)
 @Retention(RUNTIME)
-@Constraint(validatedBy = HipValidatorImpl.class)
-public @interface HipValidator {
+@Constraint(validatedBy = {ImageValidator.class})
+public @interface ValidImage {
 
-    String message() default "PayLoad error";
+    String message() default "Invalid image file";
 
     Class<?>[] groups() default {};
 
