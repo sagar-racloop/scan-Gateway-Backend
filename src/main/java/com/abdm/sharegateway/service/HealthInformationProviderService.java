@@ -1,6 +1,5 @@
 package com.abdm.sharegateway.service;
 
-import com.abdm.sharegateway.co.HealthInformationProviderCO;
 import com.abdm.sharegateway.domain.HealthInformationProvider;
 import com.abdm.sharegateway.vo.HealthInformationProviderDetailedVO;
 import com.abdm.sharegateway.vo.HealthInformationProviderVO;
@@ -14,11 +13,10 @@ public interface HealthInformationProviderService {
 
     List<HealthInformationProviderVO> getAll();
 
-    HealthInformationProvider get(Long id);
+    HealthInformationProviderDetailedVO get(String id, String counterId);
 
-    HealthInformationProvider delete(Long id);
+    HealthInformationProvider delete(String hipId, String counterId);
 
-    HealthInformationProvider update(Long id, HealthInformationProviderCO healthInformationProviderCO);
+    HealthInformationProvider update(String id, String counterId, String healthInformationProviderCO, MultipartFile multipartFile);
 
-    HealthInformationProviderDetailedVO getForHipAndCounter(String hipId, String counterId);
 }

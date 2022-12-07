@@ -9,4 +9,6 @@ public interface HipRepository extends JpaRepository<HealthInformationProvider, 
 
     Optional<HealthInformationProvider> findByHipIdAndCounterId(String hipId, String counterId);
 
+    boolean existsByHipIdAndCounterId(String hipId, String counterId);
+
 }

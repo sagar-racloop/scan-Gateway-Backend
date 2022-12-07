@@ -1,8 +1,8 @@
 package com.abdm.sharegateway.controller;
 
-import com.abdm.sharegateway.co.HealthInformationProviderCO;
 import com.abdm.sharegateway.domain.HealthInformationProvider;
 import com.abdm.sharegateway.service.HealthInformationProviderService;
+import com.abdm.sharegateway.vo.HealthInformationProviderDetailedVO;
 import com.abdm.sharegateway.vo.HealthInformationProviderVO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hip")
+@CrossOrigin(origins = "http://localhost:9003")
 public class HealthInformationProviderController {
 
     @Autowired
@@ -37,24 +38,21 @@ public class HealthInformationProviderController {
         return ResponseEntity.ok(healthInformationProviderService.getAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<HealthInformationProvider> get(@PathVariable Long id) {
-        return ResponseEntity.ok(healthInformationProviderService.get(id));
-    }
-
     @GetMapping("/{hipId}/counter/{counterId}")
-    public ResponseEntity<HealthInformationProviderVO> get(@PathVariable String hipId, @PathVariable String counterId) {
-        return ResponseEntity.ok(healthInformationProviderService.getForHipAndCounter(hipId, counterId));
+    public ResponseEntity<HealthInformationProviderDetailedVO> get(@PathVariable String hipId, @PathVariable String counterId) {
+        return ResponseEntity.ok(healthInformationProviderService.get(hipId, counterId));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<HealthInformationProvider> delete(@PathVariable Long id) {
-        return ResponseEntity.ok(healthInformationProviderService.delete(id));
+    @DeleteMapping("/{hipId}/counter/{counterId}")
+    public ResponseEntity<HealthInformationProvider> delete(@PathVariable String hipId, @PathVariable String counterId) {
+        return ResponseEntity.ok(healthInformationProviderService.delete(hipId, counterId));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<HealthInformationProvider> update(
-            @PathVariable Long id, @Valid @RequestBody HealthInformationProviderCO healthInformationProviderCO) {
-        return ResponseEntity.ok(healthInformationProviderService.update(id, healthInformationProviderCO));
+    @PutMapping("/{hipId}/counter/{counterId}")
+    public ResponseEntity<HealthInformationProvider> update(@PathVariable String hipId, @PathVariable String counterId,
+                                                            @Valid @RequestPart String healthInformationProviderCO,
+                                                            @Valid @RequestPart MultipartFile multipartFile) {
+        return ResponseEntity.ok(healthInformationProviderService.update(hipId, counterId, healthInformationProviderCO,
+                multipartFile));
     }
 }
