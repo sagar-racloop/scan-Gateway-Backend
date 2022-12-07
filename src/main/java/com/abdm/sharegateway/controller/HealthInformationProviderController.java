@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hip")
-@CrossOrigin(origins = "http://localhost:9003")
+@CrossOrigin
 public class HealthInformationProviderController {
 
     @Autowired
