@@ -38,6 +38,4 @@ public class HealthInformationProviderCO {
     @NotNull
     private String createPatientUrl;
 
-    @ValidImage
-    private MultipartFile imageFile;
 }

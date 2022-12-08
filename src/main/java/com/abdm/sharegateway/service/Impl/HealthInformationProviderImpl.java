@@ -67,10 +67,11 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
         HealthInformationProviderCO healthInformationProviderCO = ApplicationUtil.getHipJsonObject(hipInString);
         HealthInformationProvider healthInformationProvider = hipRepository.findByHipIdAndCounterId(id, counterId).orElseThrow(
                 () -> new NoStackException("No entry found for provided id reference"));
+        healthInformationProviderCO.setHipId(id);
+        healthInformationProviderCO.setCounterId(counterId);
         BeanUtils.copyProperties(healthInformationProviderCO, healthInformationProvider);
-        healthInformationProviderCO.setImageFile(multipartFile);
         try {
-            healthInformationProvider.setImageByte(healthInformationProviderCO.getImageFile().getBytes());
+            healthInformationProvider.setImageByte(multipartFile.getBytes());
         } catch (IOException e) {
             throw new NoStackException("Error in saving file.");
         }
