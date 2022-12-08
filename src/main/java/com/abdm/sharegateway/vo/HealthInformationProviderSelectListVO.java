@@ -1,0 +1,21 @@
+package com.abdm.sharegateway.vo;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class HealthInformationProviderSelectListVO {
+
+    private List<Integer> method;
+    private List<String> tokenUrl;
+    private List<String> searchUrl;
+    private List<String> createPatientUrl;
+
+}

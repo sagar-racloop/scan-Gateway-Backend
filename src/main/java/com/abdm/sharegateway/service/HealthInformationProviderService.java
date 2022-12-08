@@ -2,6 +2,7 @@ package com.abdm.sharegateway.service;
 
 import com.abdm.sharegateway.domain.HealthInformationProvider;
 import com.abdm.sharegateway.vo.HealthInformationProviderDetailedVO;
+import com.abdm.sharegateway.vo.HealthInformationProviderSelectListVO;
 import com.abdm.sharegateway.vo.HealthInformationProviderVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,4 +20,5 @@ public interface HealthInformationProviderService {
 
     HealthInformationProvider update(String id, String counterId, String healthInformationProviderCO, MultipartFile multipartFile);
 
+    HealthInformationProviderSelectListVO selectList();
 }

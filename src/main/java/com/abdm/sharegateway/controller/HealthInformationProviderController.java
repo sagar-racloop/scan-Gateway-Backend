@@ -3,6 +3,7 @@ package com.abdm.sharegateway.controller;
 import com.abdm.sharegateway.domain.HealthInformationProvider;
 import com.abdm.sharegateway.service.HealthInformationProviderService;
 import com.abdm.sharegateway.vo.HealthInformationProviderDetailedVO;
+import com.abdm.sharegateway.vo.HealthInformationProviderSelectListVO;
 import com.abdm.sharegateway.vo.HealthInformationProviderVO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,10 @@ public class HealthInformationProviderController {
                                                             @Valid @RequestPart MultipartFile multipartFile) {
         return ResponseEntity.ok(healthInformationProviderService.update(hipId, counterId, healthInformationProviderCO,
                 multipartFile));
+    }
+
+    @GetMapping("/select-list")
+    public ResponseEntity<HealthInformationProviderSelectListVO> selectList() {
+        return ResponseEntity.ok(healthInformationProviderService.selectList());
     }
 }

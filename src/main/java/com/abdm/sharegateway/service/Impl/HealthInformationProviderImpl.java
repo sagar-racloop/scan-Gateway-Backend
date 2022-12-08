@@ -7,6 +7,7 @@ import com.abdm.sharegateway.repository.HipRepository;
 import com.abdm.sharegateway.service.HealthInformationProviderService;
 import com.abdm.sharegateway.util.ApplicationUtil;
 import com.abdm.sharegateway.vo.HealthInformationProviderDetailedVO;
+import com.abdm.sharegateway.vo.HealthInformationProviderSelectListVO;
 import com.abdm.sharegateway.vo.HealthInformationProviderVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +78,15 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
         }
         healthInformationProvider = hipRepository.saveAndFlush(healthInformationProvider);
         return healthInformationProvider;
+    }
+
+    @Override
+    public HealthInformationProviderSelectListVO selectList() {
+        List<HealthInformationProvider> providers = hipRepository.findAll();
+        List<String> tokenList = providers.stream().map(HealthInformationProvider::getTokenUrl).collect(Collectors.toList());
+        List<String> searchList = providers.stream().map(HealthInformationProvider::getSearchUrl).collect(Collectors.toList());
+        List<String> patientList = providers.stream().map(HealthInformationProvider::getCreatePatientUrl).collect(Collectors.toList());
+        List<Integer> methodList = providers.stream().map(HealthInformationProvider::getMethod).collect(Collectors.toList());
+        return new HealthInformationProviderSelectListVO(methodList, tokenList, searchList, patientList);
     }
 }
