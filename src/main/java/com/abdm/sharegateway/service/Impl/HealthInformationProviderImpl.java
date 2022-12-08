@@ -28,6 +28,9 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
     @Override
     public Long save(String hipString, MultipartFile multipartFile) {
         HealthInformationProviderCO healthInformationProviderCO = ApplicationUtil.getHipJsonObject(hipString);
+        if (hipRepository.existsByHipIdAndCounterId(healthInformationProviderCO.getHipId(), healthInformationProviderCO.getCounterId())){
+            throw new NoStackException("This pair of combination of HID and counterId already exists.");
+        }
         HealthInformationProvider healthInformationProvider = new HealthInformationProvider();
         BeanUtils.copyProperties(healthInformationProviderCO, healthInformationProvider);
         try {
