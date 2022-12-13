@@ -29,7 +29,7 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
     @Override
     public Long save(String hipString, MultipartFile multipartFile) {
         HealthInformationProviderCO healthInformationProviderCO = ApplicationUtil.getHipJsonObject(hipString);
-        if (hipRepository.existsByHipIdAndCounterId(healthInformationProviderCO.getHipId(), healthInformationProviderCO.getCounterId())){
+        if (hipRepository.existsByHipIdAndCounterId(healthInformationProviderCO.getHipId(), healthInformationProviderCO.getCounterId())) {
             throw new NoStackException("This pair of combination of HID and counterId already exists.");
         }
         HealthInformationProvider healthInformationProvider = new HealthInformationProvider();
@@ -62,7 +62,7 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
         HealthInformationProvider provider = hipRepository.findByHipIdAndCounterId(hipId, counterId).orElseThrow(() -> new NoStackException(
                 "No entry found for provided id reference"));
         provider.setDeleted(true);
-        provider.setHipId(provider.getHipId().concat(String.valueOf(new Date().getTime())));
+        provider.setHipId(provider.getHipId().concat("###" + String.valueOf(new Date().getTime())));
         provider = hipRepository.saveAndFlush(provider);
         return provider;
     }
