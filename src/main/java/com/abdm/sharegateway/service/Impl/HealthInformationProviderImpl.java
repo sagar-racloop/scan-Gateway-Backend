@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,6 +62,7 @@ public class HealthInformationProviderImpl implements HealthInformationProviderS
         HealthInformationProvider provider = hipRepository.findByHipIdAndCounterId(hipId, counterId).orElseThrow(() -> new NoStackException(
                 "No entry found for provided id reference"));
         provider.setDeleted(true);
+        provider.setHipId(provider.getHipId().concat(String.valueOf(new Date().getTime())));
         provider = hipRepository.saveAndFlush(provider);
         return provider;
     }
