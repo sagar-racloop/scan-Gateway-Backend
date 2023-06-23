@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'token-generator', url: 'https://github.com/sagar-racloop/scan-Gateway-Backend'
+
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'scp target/share-gateway-1.0.0.jar ubuntu@3.110.25.129:/home/ubuntu'
+            }
+        }
+    }
+}
+
