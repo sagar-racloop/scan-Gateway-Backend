@@ -18,6 +18,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'scp -v -o StrictHostKeyChecking=no target/share-gateway-1.0.0.jar ubuntu@3.110.140.141:/home/ubuntu'
+            script {
+                                def sshScript = "ssh ubuntu@3.110.140.141 'java -jar /home/ubuntu/share-gateway-1.0.0.jar'"
+                                sh sshScript
+                            }
             }
         }
     }
